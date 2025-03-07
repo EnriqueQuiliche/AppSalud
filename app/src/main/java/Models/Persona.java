@@ -2,7 +2,9 @@ package Models;
 
 import androidx.annotation.NonNull;
 
-public class Persona {
+import java.io.Serializable;
+
+public class Persona implements Serializable {
     private String nombre;
     private String apellido;
     private int edad;
@@ -98,7 +100,6 @@ public class Persona {
     @Override
     public String toString() {
         String[] tipoPeso = {"debajo de ideal","ideal","sobre lo ideal"};
-
         return this.apellido+", "+this.nombre+" tiene peso "+ tipoPeso[calcularIMC()+1]+" y es "+(esMayorDeEdad()?"mayor de edad":"menor de edad");
     }
 }

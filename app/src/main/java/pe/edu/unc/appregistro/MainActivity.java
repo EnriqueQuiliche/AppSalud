@@ -1,5 +1,6 @@
 package pe.edu.unc.appregistro;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     EditText txtNom, txtAp, txtEd, txtDni, txtPe, txtAl;
     Button btnReg, btnLis;
-    List<Persona> listarPersonas;
+    List<Persona> lista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
         btnReg = findViewById(R.id.btnRegistrar);
         btnLis = findViewById(R.id.btnListar);
 
+        lista = new ArrayList<>();
+
         btnReg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,7 +53,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        listarPersonas = new ArrayList<>();
+        btnLis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listarPersonas();
+            }
+        });
     }
 
     private void registrarPersona() {
@@ -58,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         if (validarDatos()) {
             return;
         }
+
         //Almacenar en variables los valores EditText
         String nombres = txtNom.getText().toString();
         String apellidos = txtAp.getText().toString();
@@ -69,11 +78,17 @@ public class MainActivity extends AppCompatActivity {
         //Se registrara si el dni es valido
         if(oPersona.verificarDNI()){
             Toast.makeText(this,"Registro Correcto "+oPersona.toString(),Toast.LENGTH_SHORT).show();
-            listarPersonas.add(oPersona);
+            lista.add(oPersona);
             limpiar();
         }else {
             Toast.makeText(this,"No se registró, DNI invalido",Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void listarPersonas() {
+        Intent intent = new Intent(this, ActividadLista.class);
+        intent.putExtra("listaPersonas", new ArrayList<>(lista)); // Envía la lista como Serializable
+        startActivity(intent);
     }
 
     private boolean validarDatos() {
@@ -92,6 +107,37 @@ public class MainActivity extends AppCompatActivity {
             txtEd.requestFocus();
             return true;
         }
+        if (txtDni.getText().toString().isEmpty()){
+            txtDni.setError("Porfavor ingrese DNI");
+            txtDni.requestFocus();
+            return true;
+        }else {
+            if (txtDni.getText().toString().length()<8 || txtDni.getText().toString().length()>8){
+                txtDni.setError("Verifique su DNI");
+                txtDni.requestFocus();
+                return true;
+            }
+        }
+        if (txtPe.getText().toString().isEmpty()){
+            txtPe.setError("Porfavor ingrese Peso");
+            txtPe.requestFocus();
+            return true;
+        }
+        if (txtAl.getText().toString().isEmpty()){
+            txtAl.setError("Porfavor ingrese Altura");
+            txtAl.requestFocus();
+            return true;
+        }
+        //Valida si todos los campos no estan vacios y que el dni tenga 8 digitos para indicar que la validación es correcta
+        if (!txtNom.getText().toString().isEmpty() &&
+                !txtAp.getText().toString().isEmpty() &&
+                txtDni.getText().toString().length()==8 &&
+                !txtEd.getText().toString().isEmpty() &&
+                !txtPe.getText().toString().isEmpty() &&
+                !txtAl.getText().toString().isEmpty()){
+
+            Toast.makeText(this,"Validación Correcta",Toast.LENGTH_SHORT).show();
+        }
         return false;
     }
 
@@ -104,4 +150,6 @@ public class MainActivity extends AppCompatActivity {
         txtAl.setText("");
         txtNom.requestFocus();
     }
+
+
 }
