@@ -1,72 +1,81 @@
 package Models;
 
+import android.net.Uri;
+
 import androidx.annotation.NonNull;
 
-import java.io.Serializable;
-
-public class Persona implements Serializable {
+public class Persona {
     private String nombre;
     private String apellido;
+    private String sexo;
+    private String ciudad;
     private int edad;
     private String dni;
     private double peso;
     private double altura;
+    //se cambio el tipo de dato del atributo Foto
+    //private Uri foto;
+    private byte[] foto;
 
-    public String getNombre() {
-        return nombre;
+    public Persona(String nombre, String apellido, String sexo, String ciudad, int edad, String dni, double peso, double altura, byte[] foto) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.sexo = sexo;
+        this.ciudad = ciudad;
+        this.edad = edad;
+        this.dni = dni;
+        this.peso = peso;
+        this.altura = altura;
+        this.foto = foto;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+
+    public String getNombreCompleto() {
+        return apellido+", "+nombre;
+    }
+
+    public String getTipoPeso() {
+        String[] tipoPeso = {"debajo de ideal","ideal","sobre lo ideal"};
+        return tipoPeso[calcularIMC()+1];
+    }
+
+    public String getTipoPersona() {
+        return esMayorDeEdad()? "Mayor de edad":"Menor de edad";
     }
 
     public String getApellido() {
         return apellido;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public int getEdad() {
-        return edad;
-    }
-
-    public void setEdad(int edad) {
-        this.edad = edad;
+    public String getNombre() {
+        return nombre;
     }
 
     public String getDni() {
         return dni;
     }
 
-    public void setDni(String dni) {
-        this.dni = dni;
+    public byte[] getFoto() {
+        return foto;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+    public String getCiudad() {
+        return ciudad;
     }
 
     public double getPeso() {
         return peso;
     }
 
-    public void setPeso(double peso) {
-        this.peso = peso;
-    }
-
     public double getAltura() {
         return altura;
     }
 
-    public void setAltura(double altura) {
-        this.altura = altura;
-    }
-
-    public Persona( String nombre, String apellido, int edad, String dni, double peso, double altura) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.edad = edad;
-        this.dni = dni;
-        this.peso = peso;
-        this.altura = altura;
+    public int getEdad() {
+        return edad;
     }
 
     public boolean verificarDNI(){
@@ -100,6 +109,6 @@ public class Persona implements Serializable {
     @Override
     public String toString() {
         String[] tipoPeso = {"debajo de ideal","ideal","sobre lo ideal"};
-        return this.apellido+", "+this.nombre+" tiene peso "+ tipoPeso[calcularIMC()+1]+" y es "+(esMayorDeEdad()?"mayor de edad":"menor de edad");
+        return this.apellido+", "+this.nombre+" tiene peso "+ tipoPeso[calcularIMC()+1]+" y es "+(esMayorDeEdad()?"Mayor de edad":"Menor de edad");
     }
 }

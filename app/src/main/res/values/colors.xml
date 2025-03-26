@@ -3,5 +3,13 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gris">#CBC8C8</color>
-    <color name="rojo">#FF0000</color>
+    <color name="sangre">#FF9800</color>
+    <color name="DarkPrimaryColor">#0526A2</color>
+    <color name="PrimaryColor">#03A9F4</color>
+    <color name="LightPrimaryColor">#D7CCC8</color>
+    <color name="TextIcons">#FFFFFF</color>
+    <color name="AcentColor">#9E9E9E</color>
+    <color name="PrimaryText">#212121</color>
+    <color name="SecondaryText">#757575</color>
+    <color name="DividerColor">#BDBDBD</color>
 </resources>

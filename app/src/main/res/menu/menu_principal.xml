@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Inicio" />
+    <item android:title="Citas" />
+    <item android:title="Mantenimiento Personas">
+        <menu>
+            <group>
+                <item
+                    android:id="@+id/itemRegistrar"
+                    android:title="Registrar" />
+                <item
+                    android:id="@+id/itemListar"
+                    android:title="Listar" />
+                <item android:title="Actualizar" />
+                <item android:title="Eliminar" />
+            </group>
+        </menu>
+    </item>
+    <item
+        android:id="@+id/itemSalir"
+        android:title="Salir" />
+</menu>

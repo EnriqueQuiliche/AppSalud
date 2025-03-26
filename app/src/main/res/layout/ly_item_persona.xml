@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@color/PrimaryColor">
+
+    <ImageView
+        android:id="@+id/imgFoto"
+        android:layout_width="100dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center"
+        app:srcCompat="@android:drawable/btn_star_big_on" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/lbNombreCompleto"
+            style="@style/titulos_tarjeta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre Completo" />
+
+        <TextView
+            android:id="@+id/lbTipoPeso"
+            style="@style/contenido_tarjeta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tipo de Peso" />
+
+        <TextView
+            android:id="@+id/lbMayorMenorEdad"
+            style="@style/contenido_tarjeta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Persona MayorMenor de Edad" />
+
+        <ImageView
+            android:id="@+id/imgSexo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:scaleType="fitXY"
+            android:src="@android:drawable/btn_dialog" />
+
+        <TextView
+            android:id="@+id/lbProcedencia"
+            style="@style/contenido_tarjeta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10px"
+            android:text="Ciudad de procedencia"
+            android:textAlignment="viewEnd" />
+    </LinearLayout>
+</LinearLayout>
