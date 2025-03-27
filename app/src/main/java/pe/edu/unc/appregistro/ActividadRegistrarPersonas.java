@@ -112,16 +112,17 @@ public class ActividadRegistrarPersonas extends AppCompatActivity {
         Persona oPersona = new Persona(nombres,apellidos,sexo,ciudad,edad,dni,peso,altura,imagenSeleccionada);
         //Se registrara si el dni es valido
         if(oPersona.verificarDNI()){
-            Toast.makeText(this,"Registro Correcto "+oPersona.toString(),Toast.LENGTH_SHORT).show();
             //lista.add(oPersona);
             //ActividadPrincipal.listaPersona.add(oPersona);
 
             //utilizando mi clase DAOPersona
             DAOPersona oDAOPersona = new DAOPersona();
-            oDAOPersona.Agregar(this,oPersona);
-
-            cuadroDialogo();
-            limpiar();
+            if (oDAOPersona.Agregar(this,oPersona)){
+                cuadroDialogo();
+                limpiar();
+            }else
+                Toast.makeText(this, "No se registro", Toast.LENGTH_SHORT).show();
+            //limpiar();
         }else {
             Toast.makeText(this,"No se registró, DNI invalido",Toast.LENGTH_SHORT).show();
         }

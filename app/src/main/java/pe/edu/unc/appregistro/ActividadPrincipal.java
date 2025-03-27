@@ -85,12 +85,20 @@ public class ActividadPrincipal extends AppCompatActivity {
         if(item.getItemId()==R.id.itemSalir){
             finish();
         }
+        if (item.getItemId()==R.id.itemInicio){
+            oIntento= new Intent(this, ActividadPrincipal.class);
+            startActivity(oIntento);
+        }
         if (item.getItemId()==R.id.itemRegistrar){
             oIntento= new Intent(this, ActividadRegistrarPersonas.class);
             startActivity(oIntento);
         }
         if (item.getItemId()==R.id.itemListar){
             oIntento= new Intent(this, ActividadListarPersonas.class);
+            startActivity(oIntento);
+        }
+        if (item.getItemId()==R.id.itemLlamadas){
+            oIntento= new Intent(this, ActividadLlamadas.class);
             startActivity(oIntento);
         }
         return super.onOptionsItemSelected(item);
